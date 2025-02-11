@@ -21,22 +21,18 @@ provider.addScope("https://www.googleapis.com/auth/gmail.readonly");
 
 const signInWithGoogle = async () => {
   try {
-    console.log("Attempting to sign in with Google...");
-    if (auth.currentUser) {
-      console.log("User already signed in.");
-      return auth.currentUser.getIdToken();
-    }
+    const provider = new GoogleAuthProvider();
+    provider.addScope("https://www.googleapis.com/auth/gmail.readonly");
 
     const result = await signInWithPopup(auth, provider);
-    console.log("Signed in user:", result.user);
-    return result.user;
+    const token = await result.user.getIdToken(/* forceRefresh */ true);  // ✅ Force new token
+    return token;
   } catch (error) {
     console.error("Google sign-in error:", error);
-    if (error.code === "auth/popup-closed-by-user") {
-      alert("Popup closed before sign-in. Please try again.");
-    }
     throw error;
   }
 };
+
+
 
 export { auth, signInWithGoogle };
