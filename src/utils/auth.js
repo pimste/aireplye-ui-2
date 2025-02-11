@@ -4,14 +4,15 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 
 export const loginWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    return result.user;
-  } catch (error) {
-    console.error("Login Error:", error.message);
-    throw error;
-  }
-};
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken(); 
+      return token;
+    } catch (error) {
+      console.error("Login Error:", error.message);
+      throw error;
+    }
+  };  
 
 export const logout = async () => {
   try {
