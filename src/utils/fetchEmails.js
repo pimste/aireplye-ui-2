@@ -13,7 +13,7 @@ export const fetchEmails = async () => {
     const response = await fetch("https://us-central1-aireplye-449819.cloudfunctions.net/fetchEmails", {
       method: "GET",
       headers: {
-        Authorization: `${token}`,
+        "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
