@@ -1,4 +1,4 @@
-import { auth } from "./firebase"; 
+import { auth, signInWithGoogle } from "./firebase"; 
 
 export const fetchEmails = async () => {
   try {
