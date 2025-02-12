@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext"; // ✅ Import `us
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 
+
 function App() {
   return (
     <AuthProvider>
