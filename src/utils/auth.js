@@ -1,18 +1,25 @@
-import { auth } from "./firebase"; 
+import { auth } from "./firebase";  
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
-const provider = new GoogleAuthProvider();
+export const provider = new GoogleAuthProvider();
 
-export const loginWithGoogle = async () => {
+export const signInWithGoogle = async () => {
     try {
+      const provider = new GoogleAuthProvider();
+      provider.addScope("https://www.googleapis.com/auth/gmail.readonly");
+  
       const result = await signInWithPopup(auth, provider);
-      const token = await result.user.getIdToken(); 
-      return token;
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const gmailAccessToken = credential?.accessToken; // ✅ Get access token
+      console.log("📧 Gmail API Access Token:", gmailAccessToken);
+  
+      return gmailAccessToken;
     } catch (error) {
-      console.error("Login Error:", error.message);
+      console.error("Google sign-in error:", error);
       throw error;
     }
-  };  
+  };
+  
 
 export const logout = async () => {
   try {
@@ -24,6 +31,6 @@ export const logout = async () => {
 
 export const getCurrentUser = () => {
     const user = auth.currentUser;
-    console.log("Current User:", user);  // Debugging if user is authenticated
+    console.log("Current User:", user);  
     return user;
-  };
+};

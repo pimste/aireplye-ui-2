@@ -1,11 +1,11 @@
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const { loginWithGoogle } = useAuth();
+  const { signInWithGoogle } = useAuth();
 
   const handleLogin = async () => {
     try {
-      const user = await loginWithGoogle();
+      const user = await signInWithGoogle();
       console.log("Logged in user:", user);  // Debug logged-in user object
     } catch (error) {
       console.error("Login error:", error);

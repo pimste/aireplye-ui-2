@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { loginWithGoogle, logout } from "../utils/auth";
+import { signInWithGoogle, logout } from "../utils/auth";
 
 const AuthContext = createContext();
 
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   }, [auth]);
 
   return (
-    <AuthContext.Provider value={{ user, loginWithGoogle, logout }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );

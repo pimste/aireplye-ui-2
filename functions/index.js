@@ -16,7 +16,7 @@ admin.initializeApp();
 const app = express();
 app.use(cors({ origin: true }));
 
-// Middleware to check authentication
+// 🔹 Middleware to check authentication
 async function checkAuth(req, res, next) {
   try {
     const token = req.headers.authorization?.split("Bearer ")[1];
@@ -30,22 +30,21 @@ async function checkAuth(req, res, next) {
   }
 }
 
-// Fetch emails from Gmail API
+// 🔹 Fetch emails from Gmail API
 app.get("/fetchEmails", checkAuth, async (req, res) => {
   try {
-    const { user_id } = req.user;
-    const accessToken = req.headers["gmail-access-token"]; // Pass from frontend
+    const gmailAccessToken = req.headers["gmail-access-token"]; // ✅ Read Gmail API Token
 
-    if (!accessToken) {
+    if (!gmailAccessToken) {
       return res.status(400).json({ error: "Missing Gmail access token" });
     }
 
-    // Fetch emails from Gmail API
+    // 🔹 Fetch emails from Gmail API
     const response = await axios.get(
       "https://www.googleapis.com/gmail/v1/users/me/messages?q=newer_than:1d",
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${gmailAccessToken}`,
           "Content-Type": "application/json",
         },
       }
@@ -53,12 +52,13 @@ app.get("/fetchEmails", checkAuth, async (req, res) => {
 
     res.json(response.data);
   } catch (error) {
-    console.error("Error fetching emails:", error.response?.data || error.message);
+    console.error("❌ Error fetching emails:", error.response?.data || error.message);
     res.status(500).json({ error: "Failed to fetch emails" });
   }
 });
 
 exports.api = functions.https.onRequest(app);
+
 
 
 // Create and deploy your first functions

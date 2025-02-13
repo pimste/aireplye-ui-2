@@ -1,0 +1,62 @@
+[debug] [2025-02-13T13:15:33.418Z] ----------------------------------------------------------------------
+[debug] [2025-02-13T13:15:33.421Z] Command:       /opt/homebrew/Cellar/node/23.6.1/bin/node /opt/homebrew/bin/firebase functions:shell
+[debug] [2025-02-13T13:15:33.421Z] CLI Version:   13.31.0
+[debug] [2025-02-13T13:15:33.421Z] Platform:      darwin
+[debug] [2025-02-13T13:15:33.421Z] Node Version:  v23.6.1
+[debug] [2025-02-13T13:15:33.421Z] Time:          Thu Feb 13 2025 14:15:33 GMT+0100 (Central European Standard Time)
+[debug] [2025-02-13T13:15:33.422Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-13T13:15:33.501Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-13T13:15:33.501Z] > authorizing via signed-in user (pimsteijns9@gmail.com)
+[debug] [2025-02-13T13:15:33.502Z] [iam] checking project aireplye-449819 for permissions ["firebase.projects.get"]
+[debug] [2025-02-13T13:15:33.502Z] Checked if tokens are valid: true, expires at: 1739455810454
+[debug] [2025-02-13T13:15:33.502Z] Checked if tokens are valid: true, expires at: 1739455810454
+[debug] [2025-02-13T13:15:33.502Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/aireplye-449819:testIamPermissions [none]
+[debug] [2025-02-13T13:15:33.502Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/aireplye-449819:testIamPermissions x-goog-quota-user=projects/aireplye-449819
+[debug] [2025-02-13T13:15:33.502Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/aireplye-449819:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-13T13:15:34.211Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/aireplye-449819:testIamPermissions 200
+[debug] [2025-02-13T13:15:34.211Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/aireplye-449819:testIamPermissions {"permissions":["firebase.projects.get"]}
+[warn] ⚠  functions: Functions Emulator unable to start on port 5000, starting on 5001 instead. {"metadata":{"emulator":{"name":"functions"},"message":"Functions Emulator unable to start on port 5000, starting on 5001 instead."}}
+[debug] [2025-02-13T13:15:34.350Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-02-13T13:15:34.351Z] defaultcredentials: writing to file /Users/pimsteijns/.config/firebase/pimsteijns9_gmail_com_application_default_credentials.json
+[debug] [2025-02-13T13:15:34.376Z] DEBUG: Setting GAC to /Users/pimsteijns/.config/firebase/pimsteijns9_gmail_com_application_default_credentials.json
+[debug] [2025-02-13T13:15:34.376Z] Checked if tokens are valid: true, expires at: 1739455810454
+[debug] [2025-02-13T13:15:34.376Z] Checked if tokens are valid: true, expires at: 1739455810454
+[debug] [2025-02-13T13:15:34.376Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aireplye-449819/adminSdkConfig [none]
+[debug] [2025-02-13T13:15:34.759Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aireplye-449819/adminSdkConfig 200
+[debug] [2025-02-13T13:15:34.759Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aireplye-449819/adminSdkConfig {"projectId":"aireplye-449819","storageBucket":"aireplye-449819.firebasestorage.app"}
+[debug] [2025-02-13T13:15:34.777Z] [functions] Watching "/Users/pimsteijns/Desktop/fun projects/aireplye-ui/aireplye-ui/functions" for Cloud Functions...
+[debug] [2025-02-13T13:15:34.780Z] Validating nodejs source
+[debug] [2025-02-13T13:15:35.476Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-02-13T13:15:35.477Z] Building nodejs source
+[debug] [2025-02-13T13:15:35.477Z] Failed to find version of module node: reached end of search path /Users/pimsteijns/Desktop/fun projects/aireplye-ui/aireplye-ui/functions/node_modules
+[warn] ⚠  functions: Your requested "node" version "22" doesn't match your global version "23". Using node@23 from host. 
+[debug] [2025-02-13T13:15:35.479Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-02-13T13:15:35.484Z] Found firebase-functions binary at '/Users/pimsteijns/Desktop/fun projects/aireplye-ui/aireplye-ui/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8230
+
