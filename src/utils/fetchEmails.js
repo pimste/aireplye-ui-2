@@ -13,7 +13,7 @@ export const fetchEmails = async () => {
     console.log("🔑 Firebase Token:", token);
 
     // 🔹 Send request with Authorization header
-    const response = await fetch("https://us-central1-aireplye-449819.cloudfunctions.net/fetchEmails", {
+    const response = await fetch("https://us-central1-aireplye-449819.cloudfunctions.net/api", {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`, // ✅ Include token
