@@ -1,6 +1,6 @@
 import { auth } from "./firebase";
 import { signInWithGoogle } from "./auth";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export const fetchEmails = async () => {
   try {
@@ -22,8 +22,10 @@ export const fetchEmails = async () => {
       throw new Error("Google Sign-In required.");
     }
 
-    // 🔹 Retrieve Gmail API Access Token
-    const credential = GoogleAuthProvider.credentialFromResult(user);
+    // 🔹 Retrieve a fresh Google OAuth credential
+    const provider = new GoogleAuthProvider();
+    const signInResult = await signInWithPopup(auth, provider);
+    const credential = GoogleAuthProvider.credentialFromResult(signInResult);
     const gmailAccessToken = credential?.accessToken;
 
     if (!gmailAccessToken) {
