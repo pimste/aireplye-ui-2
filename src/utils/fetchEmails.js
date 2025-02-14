@@ -1,5 +1,4 @@
 import { auth } from "./firebase";
-// import { signInWithGoogle } from "./auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export const fetchEmails = async () => {
@@ -7,9 +6,9 @@ export const fetchEmails = async () => {
     let user = auth.currentUser;
 
     if (!user) {
-        console.error("❌ No authenticated user. Please log in first.");
-        throw new Error("User not authenticated");
-      }      
+      console.error("❌ No authenticated user. Please sign in first.");
+      throw new Error("User not signed in");
+    }
 
     // 🔹 Get Firebase Auth Token
     const firebaseToken = await user.getIdToken(true);
@@ -22,11 +21,18 @@ export const fetchEmails = async () => {
       throw new Error("Google Sign-In required.");
     }
 
-    // 🔹 Retrieve a fresh Google OAuth credential
+    // 🔹 Check if OAuth credential is already available
     const provider = new GoogleAuthProvider();
-    const signInResult = await signInWithPopup(auth, provider);
-    const credential = GoogleAuthProvider.credentialFromResult(signInResult);
-    const gmailAccessToken = credential?.accessToken;
+    let gmailAccessToken = null;
+
+    try {
+      const signInResult = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(signInResult);
+      gmailAccessToken = credential?.accessToken;
+    } catch (popupError) {
+      console.error("⚠️ Popup blocked or user closed the window:", popupError.message);
+      throw new Error("Popup blocked. Please allow popups and try again.");
+    }
 
     if (!gmailAccessToken) {
       console.error("❌ Missing Gmail access token.");

@@ -3,14 +3,15 @@ import { useAuth } from "../context/AuthContext";
 const Login = () => {
    const { signInWithGoogle } = useAuth();
 
-    const handleLogin = async () => {
+   const handleLogin = async () => {
     try {
-        await signInWithGoogle();
-        window.location.href = "/dashboard"; // Redirect after login
+      const user = await signInWithGoogle();
+      console.log("Logged in user:", user);
     } catch (error) {
-        console.error("Login error:", error);
+      console.error("Login error:", error);
     }
-    };
+  };
+  
 
 
   return (
