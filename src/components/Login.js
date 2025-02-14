@@ -1,16 +1,17 @@
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const { signInWithGoogle } = useAuth();
+   const { signInWithGoogle } = useAuth();
 
-  const handleLogin = async () => {
+    const handleLogin = async () => {
     try {
-      const user = await signInWithGoogle();
-      console.log("Logged in user:", user);  // Debug logged-in user object
+        await signInWithGoogle();
+        window.location.href = "/dashboard"; // Redirect after login
     } catch (error) {
-      console.error("Login error:", error);
+        console.error("Login error:", error);
     }
-  };
+    };
+
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">

@@ -1,5 +1,5 @@
 import { auth } from "./firebase";
-import { signInWithGoogle } from "./auth";
+// import { signInWithGoogle } from "./auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export const fetchEmails = async () => {
@@ -7,9 +7,9 @@ export const fetchEmails = async () => {
     let user = auth.currentUser;
 
     if (!user) {
-      console.error("❌ No authenticated user, signing in...");
-      user = await signInWithGoogle();
-    }
+        console.error("❌ No authenticated user. Please log in first.");
+        throw new Error("User not authenticated");
+      }      
 
     // 🔹 Get Firebase Auth Token
     const firebaseToken = await user.getIdToken(true);
